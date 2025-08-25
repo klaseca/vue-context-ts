@@ -14,7 +14,7 @@
   "homepage": "https://github.com/klaseca/vue-context-ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/klaseca/vue-context-ts.git"
+    "url": "git+https://github.com/klaseca/vue-context-ts.git"
   },
   "bugs": {
     "url": "https://github.com/klaseca/vue-context-ts/issues"
