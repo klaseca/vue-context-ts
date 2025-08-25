@@ -1,0 +1,59 @@
+{
+  "name": "vue-context-ts",
+  "version": "0.0.0",
+  "type": "module",
+  "keywords": [
+    "vue",
+    "provide",
+    "inject",
+    "context"
+  ],
+  "author": "Maxim Molochkov <klaseca@gmail.com> (https://github.com/klaseca)",
+  "license": "MIT",
+  "description": "Typesafe vue context",
+  "homepage": "https://github.com/klaseca/vue-context-ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/klaseca/vue-context-ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/klaseca/vue-context-ts/issues"
+  },
+  "engines": {
+    "node": "^22.18",
+    "npm": ">=10"
+  },
+  "files": [
+    "./dist"
+  ],
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "default": "./dist/index.js"
+  },
+  "scripts": {
+    "prepare": "husky",
+    "prebuild": "npm run test && node ./scripts/rmrf.js ./dist",
+    "build": "npm run build:raw",
+    "build:raw": "tsc -p ./tsconfig.build.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "format": "prettier -w -u .",
+    "prerelease": "npm run build",
+    "release": "bumpp && npm publish"
+  },
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "@vue/test-utils": "^2.4.6",
+    "bumpp": "^10.2.3",
+    "happy-dom": "^18.0.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
+    "prettier": "^3.6.2",
+    "typescript": "^5.8.3",
+    "vitest": "3.2.4",
+    "vue": "^3.5.16"
+  },
+  "peerDependencies": {
+    "vue": "^3"
+  }
+}
