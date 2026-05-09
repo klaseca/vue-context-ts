@@ -19,9 +19,15 @@
   "bugs": {
     "url": "https://github.com/klaseca/vue-context-ts/issues"
   },
-  "engines": {
-    "node": "^22.18",
-    "npm": ">=10"
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": ">=24.14"
+    },
+    "packageManager": {
+      "name": "npm",
+      "version": ">=11"
+    }
   },
   "files": [
     "./dist"
@@ -37,21 +43,21 @@
     "build:raw": "tsc -p ./tsconfig.build.json",
     "test": "vitest run",
     "test:watch": "vitest",
-    "format": "prettier -w -u .",
+    "fmt": "prettier -w -u .",
     "prerelease": "npm run build",
     "release": "bumpp && npm publish"
   },
   "devDependencies": {
-    "@types/node": "^24.1.0",
-    "@vue/test-utils": "^2.4.6",
-    "bumpp": "^10.2.3",
-    "happy-dom": "^18.0.1",
+    "@types/node": "^24.12.3",
+    "@vue/test-utils": "^2.4.10",
+    "bumpp": "^11.1.0",
+    "happy-dom": "^20.9.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.1.5",
-    "prettier": "^3.6.2",
-    "typescript": "^5.8.3",
-    "vitest": "3.2.4",
-    "vue": "^3.5.16"
+    "lint-staged": "^17.0.4",
+    "prettier": "^3.8.3",
+    "typescript": "^6.0.3",
+    "vitest": "4.1.5",
+    "vue": "^3.5.34"
   },
   "peerDependencies": {
     "vue": "^3"
