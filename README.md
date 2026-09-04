@@ -13,6 +13,8 @@ npm i vue-context-ts
 ## API
 
 ```typescript
+import { Context } from 'vue-context-ts';
+
 const context = new Context(options);
 ```
 
@@ -30,6 +32,8 @@ const context = new Context(options);
 ### Create context with defined `defaultValue`
 
 ```typescript
+import { Context } from 'vue-context-ts';
+
 const context = new Context({ key: Symbol('key'), defaultValue: 1 });
 ```
 
@@ -38,6 +42,8 @@ const context = new Context({ key: Symbol('key'), defaultValue: 1 });
 If you do not want to pass `defaultValue` when creating a context, use static method `valueType` from `Context` to specify type of value you expect
 
 ```typescript
+import { Context } from 'vue-context-ts';
+
 const context = new Context({
   key: Symbol('key'),
   defaultValue: Context.valueType<string>(),
@@ -62,6 +68,8 @@ const value = context.inject();
 If `undefined` or `null` value should be allowed, set `isNullishAllowed` option to `true`
 
 ```typescript
+import { Context } from 'vue-context-ts';
+
 const context = new Context({
   key: 'key',
   defaultValue: 'random string',
@@ -86,6 +94,8 @@ const value = context.inject();
 You can also use factory function as default value
 
 ```typescript
+import { Context } from 'vue-context-ts';
+
 const context = new Context({
   key: 'key',
   defaultValue: () => 1,
@@ -99,3 +109,27 @@ const value = context.inject();
   `value` is of type `number` (inferred from return value of factory function)
 */
 ```
+
+### Provide a value at application level
+
+Each context can be installed as a Vue plugin. Pass the context value as the
+second argument to `app.use`:
+
+```typescript
+import { createApp } from 'vue';
+import { Context } from 'vue-context-ts';
+
+const context = new Context({
+  key: Symbol('key'),
+  defaultValue: Context.valueType<string>(),
+});
+
+const app = createApp(App);
+
+app.use(context, 'random string');
+app.mount('#app');
+```
+
+Components can access this value with `context.inject()`. A nearer
+`context.provide()` call still overrides the application-level value for its
+descendants.

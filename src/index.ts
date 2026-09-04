@@ -1,4 +1,4 @@
-import { inject, provide, type InjectionKey } from 'vue';
+import { inject, provide, type App, type InjectionKey } from 'vue';
 
 export type Nullish<T> = T | undefined | null;
 
@@ -76,6 +76,10 @@ export class Context<
 
   provide(value: ValueType<Value, NullishAllowed, AsFactory>): void {
     provide(this.key, value);
+  }
+
+  install(app: App, value: ValueType<Value, NullishAllowed, AsFactory>): void {
+    app.provide(this.key, value);
   }
 
   static valueType<T extends {}>(): Nullish<T> {

@@ -140,4 +140,19 @@ describe('Context', () => {
 
     expect(wrapper.html()).toBe('<div>factory</div>');
   });
+
+  test('provide value through app.use', () => {
+    const context = new Context({
+      key: Symbol('foo'),
+      defaultValue: Context.valueType<number>(),
+    });
+
+    const wrapper = mount(createComponent(context), {
+      global: {
+        plugins: [[context, 42]],
+      },
+    });
+
+    expect(wrapper.html()).toBe('<div>42</div>');
+  });
 });

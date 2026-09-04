@@ -1,4 +1,5 @@
 import { describe, test, expectTypeOf } from 'vitest';
+import { createApp } from 'vue';
 import { Context } from '../src/index.ts';
 
 describe('Context', () => {
@@ -15,6 +16,16 @@ describe('Context', () => {
 
     test('inject', () => {
       expectTypeOf(context.inject).toEqualTypeOf<() => number>();
+    });
+
+    test('app.use', () => {
+      const app = createApp({});
+
+      app.use(context, 2);
+      // @ts-expect-error context value is required
+      app.use(context);
+      // @ts-expect-error value must match the context value type
+      app.use(context, '2');
     });
   });
 
@@ -39,6 +50,13 @@ describe('Context', () => {
       expectTypeOf(context.inject).toEqualTypeOf<
         () => number | undefined | null
       >();
+    });
+
+    test('app.use allows nullish values', () => {
+      const app = createApp({});
+
+      app.use(context, null);
+      app.use(context, undefined);
     });
   });
 
